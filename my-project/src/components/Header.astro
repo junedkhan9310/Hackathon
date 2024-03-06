@@ -1,0 +1,61 @@
+<div data-nav-overlay aria-hidden="true" class="fixed bg-gray-800/40 inset-0 z-30 hidden lg:hidden"></div>
+<header class="sticky top-0 w-full flex items-center h-20 border-b border-b-gray-100 dark:border-b-gray-900 z-40 bg-white/80 dark:bg-gray-950/80 backdrop-filter backdrop-blur-xl">
+    <nav class="relative mx-auto lg:max-w-7xl w-full px-5 sm:px-10 md:px-12 lg:px-5 flex gap-x-5 justify-between items-center">
+        <div class="flex items-center min-w-max">       
+            <a href="/" class="relative flex items-center gap-2.5">
+                <span aria-hidden="true" class="flex"></span>
+                <span class="inline-flex text-lg font-bold text-indigo-950 dark:text-white">Akatsuki Attendance System</span>
+            </a>
+        </div>
+        <div data-navbar class="absolute top-full translate-y-10 opacity-0 invisible lg:visible lg:translate-y-0 lg:opacity-100 left-0 bg-white dark:bg-gray-950 lg:bg-transparent border-b border-gray-200 dark:border-gray-800 py-8 lg:py-0 px-5 sm:px-10 md:px-12 lg:px-0 lg:border-none w-full lg:top-0 lg:relative lg:w-max lg:flex lg:transition-none duration-300 ease-linear gap-x-6">
+            <div class="flex flex-col sm:flex-row sm:items-center gap-4 lg:min-w-max mt-10 lg:mt-0">
+                <a href="#"
+                    class="relative flex justify-center px-6 py-3 before:absolute before:inset-0 before:rounded-lg before:transition before:bg-gray-100 dark:before:bg-gray-900 after:bg-black text-indigo-600 dark:text-white hover:before:scale-105 hover:before:bg-indigo-600 dark:hover:before:bg-gray-800">
+                    <span class="relative">Faculty Login</span>
+                </a>
+            </div>
+        </div>
+        <div class="flex items-center lg:hidden">
+            <button data-toggle-navbar data-is-open="false" aria-label="toggle navbar"
+                class="outline-none border-l border-l-indigo-100 dark:border-l-gray-800 pl-3 relative py-3">
+                <span id="line-1" aria-hidden="true"
+                    class="h-0.5 w-6 rounded bg-white dark:bg-gray-300 transition duration-300"></span>
+                <span id="line-2" aria-hidden="true"
+                    class="mt-2 h-0.5 w-6 rounded bg-white dark:bg-gray-300 transition duration-300"></span>
+            </button>
+        </div>
+    </nav>
+</header>
+
+<section class="bg-gray-200">
+<div class="container mx-auto py-2 rounded-lg">
+    <div class="two-column-container flex flex-col md:flex-row justify-center">
+      <div class="md:w-1/2 p-4 text-center">
+        <h2 id="live-time" class="text-4xl font-bold rounded-xl py-8 bg-black text-white"></h2>
+      </div> 
+      <div class="md:w-1/2 p-4 text-center">
+        <h2 id="live-date" class="text-4xl font-bold rounded-xl py-8 bg-black text-white"></h2>
+      </div>
+    </div>
+  </div>
+</section>
+  <script>
+    // Function to update time and date
+    function updateTimeAndDate() {
+      const now = new Date();
+      const timeElement = document.getElementById('live-time');
+      const dateElement = document.getElementById('live-date');
+
+      // Update time
+      const timeOptions = { hour: 'numeric', minute: '2-digit', second: '2-digit', hour12: true };
+      timeElement.textContent = now.toLocaleTimeString('en-US', timeOptions);
+
+      // Update date
+      const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      dateElement.textContent = now.toLocaleDateString('en-US', dateOptions);
+    }
+
+    // Call updateTimeAndDate every second
+    updateTimeAndDate(); // Call once to avoid initial delay
+    setInterval(updateTimeAndDate, 1000);
+  </script>
